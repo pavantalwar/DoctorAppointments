@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #dee5eb, #003366);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            width: 350px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            background-color: #2575fc;
+            color: white;
+            border: none;
+            padding: 10px 0;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 8px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1a5fe0;
+        }
+
+        label {
+            display: inline-block;
+            margin-top: 15px;
+            color: #555;
+        }
+
+        a {
+            color: #2575fc;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 5px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        p {
+            margin-top: 15px;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login Page</h2>
+        <form action="" method="POST" autocomplete="off"> 
+            {% csrf_token %}
+            <input type="text" name="user" id="user" placeholder="Enter username" required autocomplete="off"> 
+            <input type="password" name="password" id="password" placeholder="Password" required autocomplete="new-password"> 
+            <button name="btn">Log in</button>
+
+            <label>Forgot your login details?</label><a href="{% url 'signinhelp_page' %}">Get help signing in</a> <br>
+            <label for="">OR</label>
+            <hr>
+            <label>Don't have an account?</label><a href="{% url 'signup_page' %}">Sign Up</a> 
+        </form>
+
+        {% if data %}
+        <p>{{ data }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

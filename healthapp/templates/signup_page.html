@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp Page</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #8e2de2, #4a00e0);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            width: 400px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: -5px;
+        }
+
+        button {
+            background-color: #4a00e0;
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 8px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #3a00b8;
+        }
+
+        p {
+            margin-top: 15px;
+            color: red;
+            font-weight: bold;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #4a00e0;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <script>
+        function validateForm() {
+            const password = document.getElementById("password").value;
+            const errorDiv = document.getElementById("password-error");
+
+            const hasUpper = /[A-Z]/.test(password);
+            const hasLower = /[a-z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+            const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+            const hasLength = password.length >= 8;
+
+            if (!hasUpper || !hasLower || !hasNumber || !hasSpecial || !hasLength) {
+                errorDiv.textContent = "Password must include uppercase, lowercase, special character, number, and be 8+ characters.";
+                return false;
+            }
+
+            errorDiv.textContent = "";
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>SignUp Page</h2>
+        <form action="" method="POST" onsubmit="return validateForm()" autocomplete="off"> 
+            {% csrf_token %}
+            <input type="text" name="user" id="user" placeholder="Enter username" required autocomplete="off">
+            <input type="email" name="email" id="email" placeholder="Enter email" required autocomplete="off">
+            <input type="password" name="password" id="password" placeholder="Password" required autocomplete="new-password">
+            <div id="password-error" class="error"></div>
+            <button name="btn">Sign Up</button>
+        </form>
+
+        {% if data %}
+        <p>{{ data }}</p>
+        <a href="{% url 'signinhelp_page' %}">Help Signin</a>
+        {% endif %}
+    </div>
+</body>
+</html>

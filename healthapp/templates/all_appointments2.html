@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Appointments</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f6fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #003366;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .search-form {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-form input[type="text"] {
+            padding: 7px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .search-form button {
+            padding: 7px 15px;
+            background-color: white;
+            color: #003366;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #003366;
+            color: white;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e0e7ff;
+            cursor: pointer;
+        }
+
+        td {
+            color: #555;
+            font-size: 15px;
+        }
+        .search-form {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+}
+
+.search-form input[type="text"] {
+    flex: 1;
+    padding: 14px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    outline: none;
+    width: 100%;
+    border: 1px solid #003366;
+}
+
+.search-form button {
+    padding: 14px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: whitesmoke;
+    color: #003366;
+    border: 2px solid #003366;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-form button:hover {
+    background-color: rgb(58, 192, 58);
+    color: white;
+}
+
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="logo">Vcube Hospitals</div>
+    <ul>
+        <li><a href="{% url 'home_page' %}">Home</a></li>
+        <li><a href="{% url 'book_appointment_page' %}">Book Appointment</a></li>
+        <li><a href="{% url 'doctor_appointments' %}">Doctor Appointments</a></li>
+    </ul>
+</div>
+
+<!-- Search Form (moved outside navbar) -->
+<form method="get" class="search-form">
+    <input type="text" name="q" placeholder="Search by Date (yyyy-mm-dd) or Doctor Name" value="{{ request.GET.q }}" autocomplete="off">
+    <button type="submit">Search</button>
+</form>
+
+
+    </div>
+
+    <div class="container">
+        <h1>All Appointments</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Doctor Name</th>
+                    <th>Patient Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for app in appointments %}
+                <tr>
+                    <td>{{ app.doctor_name }}</td>
+                    <td>{{ app.patient_name }}</td>
+                    <td>{{ app.date }}</td>
+                    <td>{{ app.time }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No appointments found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

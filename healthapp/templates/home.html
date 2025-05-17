@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vcube Hospitals | Home</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .navbar {
+      background-color: #003366;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar h2 {
+      font-size: 24px;
+    }
+
+    .nav-links a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .banner {
+      background: url("{% static 'images/vcube.png' %}") no-repeat center;
+      background-size: cover;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 1px 1px 5px #000;
+    }
+
+    .banner h1 {
+      font-size: 3rem;
+      background-color: rgba(0,0,0,0.4);
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .section h2 {
+      color: #003366;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+    }
+
+    .section p, .section li {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .services ul, .departments ul {
+      list-style: square inside;
+      padding-left: 20px;
+    }
+
+    .testimonial {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .testimonial p {
+      font-style: italic;
+    }
+
+    .contact a {
+      color: #003366;
+      text-decoration: none;
+    }
+
+    .cta {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .cta a {
+      background-color: #003366;
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .cta a:hover {
+      background-color: #0055aa;
+    }
+
+    .service-card {
+      background: #fff;
+      padding: 15px;
+      margin: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      flex: 1 1 30%;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .services-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    footer {
+      background-color: #003366;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #ffc107;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    @media(max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        margin-top: 10px;
+      }
+
+      .banner h1 {
+        font-size: 2rem;
+        text-align: center;
+      }
+
+      .services-cards {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <h2>Vcube Hospitals</h2>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="{% url 'book_appointment_page' %}">Book Appointment</a>
+      <a href="{% url 'doctors_page' %}">Doctors</a>
+      <a href="{% url 'login_page' %}">Logout</a>
+    </div>
+  </div>
+
+  <!-- Banner -->
+  <div class="banner">
+   
+  </div>
+
+  <!-- About -->
+  <div class="section">
+    <h2>About Vcube Hospitals</h2>
+    <p>Vcube Hospitals is a multi-specialty healthcare center committed to delivering exceptional medical services with a patient-first approach. Our highly trained staff and state-of-the-art facilities ensure the best treatment outcomes and patient comfort.</p>
+    <p>With over 20 departments, 100+ expert doctors, and 24/7 emergency care, we stand as a beacon of trust and healing for thousands across the region.</p>
+  </div>
+
+  <!-- Departments -->
+  <div class="section departments">
+    <h2>Specialty Departments</h2>
+    <ul>
+      <li>Cardiology & Cardiothoracic Surgery</li>
+      <li>Neurology & Neurosurgery</li>
+      <li>Orthopedics & Joint Replacement</li>
+      <li>Pediatrics & Neonatal ICU</li>
+      <li>Gastroenterology & Liver Care</li>
+      <li>Oncology & Cancer Treatment</li>
+      <li>Gynecology & Fertility Care</li>
+    </ul>
+  </div>
+
+  <!-- Why Choose Us -->
+  <div class="section">
+    <h2>Why Choose Us?</h2>
+    <ul>
+      <li>🕒 24/7 Online Appointment Booking</li>
+      <li>👩‍⚕️ Experienced & Verified Doctors</li>
+      <li>🏥 Advanced Medical Equipment</li>
+      <li>🛌 Clean, Safe & Comfortable Environment</li>
+      <li>💖 Personalized Patient Care</li>
+    </ul>
+  </div>
+
+  <!-- Services -->
+  <div class="section">
+    <h2>Our Services</h2>
+    <div class="services-cards">
+      <div class="service-card">General Medicine</div>
+      <div class="service-card">Pediatrics</div>
+      <div class="service-card">Cardiology</div>
+      <div class="service-card">Dermatology</div>
+      <div class="service-card">Orthopedics</div>
+      <div class="service-card">Neurology</div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="section testimonial">
+    <h2>What Our Patients Say</h2>
+    <p>“Vcube Hospitals provided excellent care and professionalism. Booking was seamless and the staff were very supportive throughout my recovery.”</p>
+    <p>– Priya S.</p>
+  </div>
+
+  <!-- Contact -->
+  <div class="section">
+    <h2>Contact Us</h2>
+    <p class="contact">
+      📍 Address: 123 Health Street, Care City, India<br>
+      📞 Phone: +91-9876543210<br>
+      ✉️ Email: <a href="mailto:contact@vcubehospitals.com">contact@vcubehospitals.com</a>
+    </p>
+  </div>
+
+  <!-- Call to Action -->
+  <div class="cta">
+    <a href="{% url 'book_appointment_page' %}">Book an Appointment Now</a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Vcube Hospitals. All Rights Reserved.</p>
+    <p>
+      <a href="#">Privacy Policy</a> |
+      <a href="#">Terms of Service</a> |
+      <a href="#">Contact Us</a>
+    </p>
+  </footer>
+
+</body>
+</html>
