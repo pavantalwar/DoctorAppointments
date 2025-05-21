@@ -6,6 +6,8 @@ from django.conf import settings
 from .forms import book_appointments_form
 from django.shortcuts import get_object_or_404
 
+from django.db.models import Q
+
 
 # Create your views here.
 
@@ -41,7 +43,6 @@ def login_page(request):
             return redirect ('home_page')
         else:
             return render(request,'login_page.html',{"data":"incorrect username or password"})
-
     return render(request, 'login_page.html')
 
 
@@ -172,9 +173,7 @@ def doctor_appointments(request):
 
 
 
-from django.shortcuts import render
-from .models import book_appointments
-from django.db.models import Q
+
 
 def all_appointments2(request):
     query = request.GET.get('q', '').strip()
@@ -183,7 +182,8 @@ def all_appointments2(request):
     if query:
         appointments = appointments.filter(
             Q(doctor_name__icontains=query) |
-            Q(date__icontains=query)  # assuming date field is stored in 'YYYY-MM-DD'
+            Q(date__icontains=query) |
+            Q(patient_name__icontains = query)  # assuming date field is stored in 'YYYY-MM-DD'
         )
 
     return render(request, 'all_appointments2.html', {"appointments": appointments})
